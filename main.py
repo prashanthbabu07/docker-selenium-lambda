@@ -1,6 +1,8 @@
 from selenium import webdriver
 from tempfile import mkdtemp
 from selenium.webdriver.common.by import By
+import time
+import base64
 
 
 def handler(event=None, context=None):
@@ -21,4 +23,17 @@ def handler(event=None, context=None):
     chrome = webdriver.Chrome("/opt/chromedriver",
                               options=options)
     chrome.get("https://example.com/")
-    return chrome.find_element(by=By.XPATH, value="//html").text
+
+    time.sleep(5)
+
+    image_bytes = chrome.get_screenshot_as_png();
+    #text = chrome.find_element(by=By.XPATH, value="//html").text
+    base64_bytes = base64.b64encode(image_bytes)
+    base64_string = base64_bytes.decode("utf-8")
+
+    response = {
+        "statusCode": 200,
+        "body": base64_string
+    }
+
+    return response

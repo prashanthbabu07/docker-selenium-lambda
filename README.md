@@ -51,3 +51,7 @@ docker tag docker-selenium-lambda:latest 418643210656.dkr.ecr.us-east-1.amazonaw
 Push to AWS
 docker push 418643210656.dkr.ecr.us-east-1.amazonaws.com/screenbot-selenium:2   
 
+{
+	"url": "https://www.google.com",
+	"seconds": 2
+}

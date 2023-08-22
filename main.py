@@ -3,9 +3,10 @@ from tempfile import mkdtemp
 from selenium.webdriver.common.by import By
 import time
 import base64
+import json
 
 
-def handler(event=None, context=None):
+def handler(event, context):
     options = webdriver.ChromeOptions()
     options.binary_location = '/opt/chrome/chrome'
     options.add_argument('--headless')
@@ -22,9 +23,15 @@ def handler(event=None, context=None):
     options.add_argument("--remote-debugging-port=9222")
     chrome = webdriver.Chrome("/opt/chromedriver",
                               options=options)
-    chrome.get("https://example.com/")
+    
+    # this is diff implementaton for events and rest api calls
+    body = json.loads(event["body"])
 
-    time.sleep(5)
+    url = body["url"]
+    seconds = body["seconds"]
+    chrome.get(url)
+
+    time.sleep(seconds)
 
     image_bytes = chrome.get_screenshot_as_png();
     #text = chrome.find_element(by=By.XPATH, value="//html").text

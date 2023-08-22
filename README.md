@@ -60,7 +60,11 @@ Push to AWS
 docker push 418643210656.dkr.ecr.us-east-1.amazonaws.com/screenbot-selenium:2   
 ```
 
+
+Request payload
+```
 {
 	"url": "https://www.google.com",
 	"seconds": 2
 }
+```

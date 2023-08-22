@@ -40,16 +40,25 @@ Available tags are listed [here](https://hub.docker.com/r/umihico/aws-lambda-sel
 If you don't want to create functions each time for each purpose, Please check out [pythonista-chromeless](https://github.com/umihico/pythonista-chromeless)
 
 get login password
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 418643210656.dkr.ecr.us-east-1.amazonaws.com
+```
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin *.dkr.ecr.us-east-1.amazonaws.com
+```
+
 
 Build
+```
 docker build -t docker-selenium-lambda . 
+```
 
 Tag
+```
 docker tag docker-selenium-lambda:latest 418643210656.dkr.ecr.us-east-1.amazonaws.com/screenbot-selenium:2
+```
 
 Push to AWS
+```
 docker push 418643210656.dkr.ecr.us-east-1.amazonaws.com/screenbot-selenium:2   
+```
 
 {
 	"url": "https://www.google.com",
